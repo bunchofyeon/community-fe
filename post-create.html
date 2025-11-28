@@ -1,0 +1,96 @@
+<!-- post-create.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>글쓰기 · Community</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://*.amazonaws.com https://*.s3.ap-northeast-2.amazonaws.com https://placehold.co data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:* https://*;">
+  <link rel="stylesheet" href="styles/style.css" />
+  <style>
+    .file-list {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .file-list-item {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      padding:4px 0;
+    }
+    .file-list-item button {
+      font-size: 12px;
+      padding:2px 6px;
+    }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import { loadLayout } from './scripts/layout.js';
+    import { renderHeader } from './scripts/common.js';
+    loadLayout().then(() => renderHeader()); 
+  </script>
+  <div id="app-header"></div>
+
+  <main class="container page-padding">
+    <div class="form-wrap">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="h4 mb-16">새 글 작성</h1>
+
+          <form id="createForm" novalidate>
+            <div class="mb-12">
+              <label for="title" class="form-label">제목</label>
+              <input
+                id="title"
+                type="text"
+                class="form-control"
+                placeholder="제목을 입력하세요"
+                required
+                maxlength="26"
+                autocomplete="off"
+              />
+              <div class="form-hint">최대 26자</div>
+            </div>
+
+            <div class="mb-16">
+              <label for="content" class="form-label">내용</label>
+              <textarea
+                id="content"
+                class="form-control"
+                rows="10"
+                placeholder="내용을 입력하세요"
+                required
+              ></textarea>
+            </div>
+
+            <!-- 첨부 파일 영역 -->
+            <div class="mb-16">
+              <label class="form-label" for="postFiles">첨부 파일</label>
+              <div>
+                <input
+                  id="postFiles"
+                  type="file"
+                  multiple
+                  class="form-control"
+                />
+                <div class="form-hint">이미지/파일을 여러 개 선택할 수 있습니다. (선택은 선택 사항)</div>
+              </div>
+              <div id="selectedFileList" class="file-list"></div>
+            </div>
+
+            <div class="actions">
+              <a href="posts.html" class="btn btn-light">취소</a>
+              <button type="submit" class="btn btn-accent" id="submitBtn">등록</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script type="module" src="./scripts/postCreate.js"></script>
+</body>
+</html>

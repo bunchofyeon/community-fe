@@ -1,0 +1,86 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: registry.piney.cloud:5000/community-frontend:2.0
+
+jobs:
+  # 1) 테스트 Job
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        working-directory: ./front
+        run: npm ci
+
+      - name: Run tests
+        working-directory: ./front
+        run: npm test
+
+  # 2) 이미지 빌드 + 레지스트리 푸시
+  build-and-push-image:
+    needs: test               # test job 성공해야 실행
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'   # main 브랜치에서만 이미지 push
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to private registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.REGISTRY_URL }}           # ex) registry.piney.cloud:5000
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./front
+          file: ./front/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}
+
+  # 3) EC2에 SSH 접속해서 배포
+  deploy:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy to Frontend EC2
+        uses: appleboy/ssh-action@v1.2.1
+        with:
+          host: ${{ secrets.FRONTEND_EC2_HOST }}      # ex) www.fe.piney.cloud 또는 EC2 IP
+          username: ${{ secrets.FRONTEND_EC2_USER }}  # ex) ubuntu
+          key: ${{ secrets.FRONTEND_EC2_SSH_KEY }}    # pem 전체 내용
+          script: |
+            cd ~/community-frontend/front
+            docker login ${{ secrets.REGISTRY_URL }} \
+              -u "${{ secrets.REGISTRY_USERNAME }}" \
+              -p "${{ secrets.REGISTRY_PASSWORD }}"
+            docker compose pull
+            docker compose up -d
+            docker image prune -f
