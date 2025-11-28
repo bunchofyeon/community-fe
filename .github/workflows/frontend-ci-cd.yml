@@ -12,7 +12,6 @@ env:
   IMAGE_NAME: registry.piney.cloud:5000/community-frontend:2.0
 
 jobs:
-  # 1) 테스트 Job
   test:
     runs-on: ubuntu-latest
 
@@ -30,16 +29,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        working-directory: ./front
         run: npm ci
 
       - name: Run tests
-        working-directory: ./front
         run: npm test
 
-  # 2) 이미지 빌드 + 레지스트리 푸시
   build-and-push-image:
-    needs: test               # test job 성공해야 실행
+    needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'   # main 브랜치에서만 이미지 push
 
@@ -50,20 +46,19 @@ jobs:
       - name: Log in to private registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ secrets.REGISTRY_URL }}           # ex) registry.piney.cloud:5000
+          registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./front
-          file: ./front/Dockerfile
+          context: .
+          file: ./Dockerfile
           push: true
           tags: |
             ${{ env.IMAGE_NAME }}
 
-  # 3) EC2에 SSH 접속해서 배포
   deploy:
     needs: build-and-push-image
     runs-on: ubuntu-latest
@@ -73,10 +68,11 @@ jobs:
       - name: Deploy to Frontend EC2
         uses: appleboy/ssh-action@v1.2.1
         with:
-          host: ${{ secrets.FRONTEND_EC2_HOST }}      # ex) www.fe.piney.cloud 또는 EC2 IP
-          username: ${{ secrets.FRONTEND_EC2_USER }}  # ex) ubuntu
-          key: ${{ secrets.FRONTEND_EC2_SSH_KEY }}    # pem 전체 내용
+          host: ${{ secrets.FRONTEND_EC2_HOST }}
+          username: ${{ secrets.FRONTEND_EC2_USER }}
+          key: ${{ secrets.FRONTEND_EC2_SSH_KEY }}
           script: |
+            # 👉 여기 경로는 "docker-compose.yml 있는 곳"으로 맞춰줘야 함
             cd ~/community-frontend/front
             docker login ${{ secrets.REGISTRY_URL }} \
               -u "${{ secrets.REGISTRY_USERNAME }}" \
