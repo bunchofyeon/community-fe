@@ -66,6 +66,9 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 04" src="https://github.com/user-attachments/assets/ab6f9536-cb6c-43d1-8957-6ad1698983f2" />
 
 - 게시글 삭제
+<img width="1574" height="1060" alt="스크린샷 2025-12-07 오후 10 34 57" src="https://github.com/user-attachments/assets/8c01f5a8-b94f-4514-8f10-bda7a114c126" />
+
+
 - 게시글 파일 삭제
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 08" src="https://github.com/user-attachments/assets/108185d5-708b-4e2b-b011-03b099d3d796" />
 
@@ -93,6 +96,10 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 5 07 57" src="https://github.com/user-attachments/assets/c5f35bc9-8ea8-495b-ba86-23e184abfc96" />
 
 - 비밀번호 수정
+<img width="1574" height="1060" alt="스크린샷 2025-12-07 오후 10 35 36" src="https://github.com/user-attachments/assets/b72dda32-8301-458a-9b2d-faa841c6baf3" />
+
+- 비밀번호 수정 (실패)
+<img width="1574" height="1060" alt="스크린샷 2025-12-07 오후 10 35 26" src="https://github.com/user-attachments/assets/95bebe7f-7080-4539-b029-8663d868b24a" />
 
 
 - 회원 탈퇴
