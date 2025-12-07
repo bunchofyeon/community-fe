@@ -62,8 +62,6 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 30 59" src="https://github.com/user-attachments/assets/988ddad1-8d99-4982-9932-78428c912913" />
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 31 22" src="https://github.com/user-attachments/assets/70ee0175-08cd-4487-8df6-8bcff3ddd1d4" />
 
-<img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 29" src="https://github.com/user-attachments/assets/04616abd-e974-4307-90c1-c550ac03e808" />
-
 - 게시글 수정
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 04" src="https://github.com/user-attachments/assets/ab6f9536-cb6c-43d1-8957-6ad1698983f2" />
 
@@ -78,6 +76,7 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 
 - 댓글 수정
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 25" src="https://github.com/user-attachments/assets/a1e41ec8-cdbf-48b9-bc56-91c7251b8548" />
+<img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 29" src="https://github.com/user-attachments/assets/04616abd-e974-4307-90c1-c550ac03e808" />
 
 - 댓글 삭제
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 32" src="https://github.com/user-attachments/assets/154da98e-27a9-4034-875f-5bf8eca1ed85" />
