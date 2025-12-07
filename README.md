@@ -28,7 +28,7 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 ## 🎨 Frontend
 개인적인 고민과 개발을 주제로 서로 소통하는 커뮤니티 프로젝트의 프론트엔드 버전입니다.
 
-🔧 기술스택
+## 🔧 기술스택
 	•	Express.js
 	•	JavaScript (Vanilla)
 	•	HTML/CSS
