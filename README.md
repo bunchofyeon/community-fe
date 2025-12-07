@@ -89,7 +89,6 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 - 프로필 이미지 수정
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 35 33" src="https://github.com/user-attachments/assets/5b02e4be-37bc-4dd2-a383-0e8e781f7385" />
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 5 07 32" src="https://github.com/user-attachments/assets/63bef513-4926-48c6-9360-d6db6e630b57" />
-<img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 34 02" src="https://github.com/user-attachments/assets/ff2c3d17-7c24-4279-92e9-2fd0d794d024" />
 
   
 - 닉네임 수정
