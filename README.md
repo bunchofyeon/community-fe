@@ -68,7 +68,6 @@ Spring Boot 3.5 · Express.js · MySQL · Docker · GitHub Actions · AWS(EC2, S
 - 게시글 삭제
 - 게시글 파일 삭제
 <img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 08" src="https://github.com/user-attachments/assets/108185d5-708b-4e2b-b011-03b099d3d796" />
-<img width="1579" height="1060" alt="스크린샷 2025-12-06 오후 4 32 08 1" src="https://github.com/user-attachments/assets/76c9385c-b90e-45c7-aeb0-0cf61c0bd093" />
 
 
 - 댓글 등록
